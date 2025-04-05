@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPTecher's Machine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Define a fonte do corpo do site */
+            background: linear-gradient(135deg, #000, #222); /* Fundo com gradiente de preto para cinza escuro */
+            text-align: center; /* Centraliza o texto */
+            margin: 0; /* Remove a margem padrão */
+            padding: 20px; /* Adiciona um padding ao redor do conteúdo */
+            color: white; /* Define a cor do texto como branco */
+        }
+    
+        #div_conversores {
+            background: linear-gradient(135deg, #111, #333); /* Gradiente de cinza escuro para mais escuro */
+            padding: 20px; /* Espaçamento interno */
+            border-radius: 10px; /* Bordas arredondadas */
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); /* Sombras suaves para destacar */
+            display: inline-block; /* Exibe o conteúdo como bloco inline */
+            color: white; /* Cor do texto como branco */
+        }
+    
+        input, select, button {
+            padding: 10px; /* Adiciona espaçamento interno aos elementos */
+            margin: 10px; /* Adiciona margem ao redor dos elementos */
+            border: 1px solid white; /* Borda branca ao redor dos elementos */
+            border-radius: 80px; /* Bordas muito arredondadas */
+            font-size: 16px; /* Tamanho da fonte */
+            background: #222; /* Cor de fundo dos elementos */
+            color: white; /* Cor do texto como branco */
+        }
+    
+        button {
+            background: white; /* Fundo branco para o botão */
+            color: black; /* Texto do botão em preto */
+            cursor: pointer; /* Mudança no cursor ao passar sobre o botão */
+            font-weight: bold; /* Texto em negrito */
+        }
+    
+        button:hover {
+            background: #cccccc; /* Fundo do botão muda para cinza claro quando o cursor está sobre ele */
+        }
+    
+        #div_resultado {
+            width: 20%; /* Define a largura da área de resultado */
+            margin-top: 20px; /* Espaço acima da área de resultado */
+            font-weight: bold; /* Texto em negrito */
+            background: rgba(0, 0, 0, 0.9); /* Fundo escuro com leve transparência */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5); /* Sombras suaves ao redor da área de resultado */
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div id="div_conversores">
+        <h1>SPTecher's Machine</h1>
+
+        <h3>Digite um número decimal:</h3>
+        <input type="Number" id="ipt_dec">
+        <br><br>
+        <button onclick="converter()">Converter</button>
+    
+        <p>Binário:</p>
+        <div id="binario"></div>
+    
+        <h3>Resultados:</h3>
+        <p>Octal:</p>
+        <div id="octal"></div>
+    
+        <p>Hexadecimal:</p>
+        <div id="hexa"></div>
+
+    </div>
+    
+    <br>
+    
+    <h2>Calcular</h2>
+
+    <!-- Escolher o sistema numérico -->
+    <select id="sistemaNumerico">
+        <option value="decimal"     > Decimal     </option>
+        <option value="binario"     > Binario     </option>
+        <option value="octal"       > Octal       </option>
+        <option value="hexadecimal" > Hexadecimal </option>
+    </select>
+
+    <br><br>
+
+    <!-- Digitar o primeiro valor -->
+    <input type="Number" id="ipt_n1">
+
+    <!-- Escolher a operação matématica -->
+    <select id="opcaoCalculo">
+        <option value="somar"       > + </option>
+        <option value="subtrair"    > - </option>
+        <option value="multiplicar" > x </option>
+        <option value="dividir"     > ÷ </option>
+    </select>
+    
+    <!-- Digitar o segundo valor -->
+    <input type="Number" id="ipt_n2">
+    
+    <br><br><button onclick="calcular()">Calcular</button>
+
+    <br><div id="div_resultado"></div>
+
+    <br><br><br>
+    <p>Por Lucas Marques de Aquino e Pedro Claudino Barbosa</p>
+</center>
+</body>
+</html>
+<script>
+    function converter(){
+        var decimal = Number(ipt_dec.value)
+
+        octal.innerHTML = decimal.toString(8);
+        hexa.innerHTML = decimal.toString(16);
+        binario.innerHTML = decimal.toString(2);
+    }
+
+    function calcular(){
+        var sistema = sistemaNumerico.value;
+        var operacao = opcaoCalculo.value;
+        var n1 = Number(ipt_n1.value);
+        var n2 = Number(ipt_n2.value);
+        var calculo = 0;
+
+        // Converte os números informados para decimal
+        if (sistema == 'binario') {
+            n1 = parseInt(n1, 2);
+            n2 = parseInt(n2, 2);
+        }
+        if (sistema == 'octal') {
+            n1 = parseInt(n1, 8);
+            n2 = parseInt(n2, 8);
+        }
+        if (sistema == 'hexadecimal') { 
+            n1 = parseInt(n1, 16);
+            n2 = parseInt(n2, 16);
+        }
+
+        // Realiza o cálculo de acordo com a operação escolhida
+        if (operacao == 'somar'){
+            calculo = n1+n2;
+        } else if (operacao == 'subtrair') {
+            calculo = n1-n2;
+        } else if (operacao == 'multiplicar') {
+            calculo = n1*n2;
+        } else if (operacao == 'dividir'){
+            calculo = n1/n2;
+        }
+
+        // Mostra o resultado em todos os sistemas númericos
+        div_resultado.innerHTML = 
+        `
+            <h3>Resultados:</h3>
+            <p>Decimal: ${calculo}</p>
+            <p>Binário: ${calculo.toString(2)}</p> 
+            <p>Octal: ${calculo.toString(8)}</p>
+            <p>Hexadecimal: ${calculo.toString(16)}</p>
+        `;
+    
+    }
+</script>
