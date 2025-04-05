@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi - Rio de Janeiro</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS -->
+</head>
+<body>
+    <div class="container">
+        <h2>Carrara Drivers</h2>
+        <h5>Insira o nome do passageiro:</h5>
+        <input type="text" id="ipt_nomepassageiro"> <!-- Campo para inserir nome do passageiro -->
+
+        <h5>Agora insira a distância do local atual para o destino do passageiro: (em KM)</h5>
+        <input type="Number" id="ipt_distancia"> <!-- Campo para inserir a distância do local atual para o destino do passageiro -->
+
+        <h5>Insira qual bandeira: (Bandeira 1 ou Bandeira 2 ou Bandeira 3)</h5>
+        <input type="Number" id="ipt_bandeira"> <!-- Só aceita valores entre 1 e 3 -->
+
+        <h5>Insira o horario da corrida:</h5>
+        <input type="Number" id="ipt_horario"> <!-- Só aceita numeros entre 0 e 23 -->
+    <br>
+        <button onclick="calcularCorrida()">Calcular Corrida</button> <!-- Botão para calcular corrida -->
+        <div id="div_exibir"></div> <!-- Criando DIV para exibir resultado da função -->
+    </div>
+</body>
+</html>
+
+
+<script>
+    function calcularCorrida(){
+        var nome = (ipt_nomepassageiro.value)
+        var distancia = Number(ipt_distancia.value)
+        var bandeira = Number(ipt_bandeira.value)
+        var horario = Number(ipt_horario.value)
+
+// Verificação bandeira 1 ou 2 ou 3 (usando acrescimo = 0 para sinalizar que não há mudança do valor nas verificações)
+        if (bandeira ==1){
+
+        } else {
+            if (bandeira == 2){
+                
+            } else{
+                if (bandeira == 3){
+
+                } else {
+                    alert("A bandeira deve ser 1, 2 ou 3.")
+                    
+                }
+            }
+        }
+
+// Validação do horario (usando acrescimo = 0 para sinalizar que não há mudança do valor nas verificações)
+        if(horario < 0){
+            alert("O horário deve estar entre 0 e 23")
+            
+        }
+        if(horario > 23){
+            alert("O horário deve estar entre 0 e 23")
+            
+        }
+
+
+// Definindo a taxa baseado na bandeira e horario
+
+// Quando a bandeira for 1, as taxas por horario serao:
+var valorBase = Number(distancia * 1.25)
+
+        if(bandeira == 1){
+                if (horario <= 6) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.05))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                        }
+            
+            else if(horario >= 7){
+                if(horario <= 12) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.10))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                        }
+            
+             if (horario >= 13) {
+                if (horario <= 23) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.15))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}` 
+                                    }
+                }
+            }
+        }
+
+
+// Quando a bandeira for 2, as taxas por horario serao:
+
+         if(bandeira == 2){
+                if (horario <= 6) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.10))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }
+             else if(horario >= 7){
+                if(horario <= 12) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.20))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }
+            if (horario >= 13) {
+                if (horario <= 23){ 
+                    var valorTotal = Number(valorBase + (valorBase * 0.30))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }           
+            }
+        }
+     }
+
+
+// Quando a bandeira for 3, as taxas por horario serao:
+
+        else if(bandeira == 3){
+                if (horario <= 6){ 
+                    var valorTotal = Number(valorBase + (valorBase * 0.15))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }
+            else if(horario >= 7){
+                if(horario <= 12){
+                    var valorTotal = Number(valorBase + (valorBase * 0.30))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }
+            if (horario >= 13) {
+                if (horario <= 23) {
+                    var valorTotal = Number(valorBase + (valorBase * 0.45))
+                    div_exibir.innerHTML = `Olá ${nome}, sua corrida será na bandeira ${bandeira}, percorrerá ${distancia}km e o 
+                                            total da corrida será de R$${valorTotal.toFixed(2)}`
+                    }
+            }
+        }
+    }
+
+
+   
+    }
+</script>
+
+
+

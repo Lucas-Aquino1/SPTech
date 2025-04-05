@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas</title>
+</head>
+<body>
+<h1>Calculando as Despesas</h1>
+    <h4>Insira a quantidade de energia consumida em kWh:</h4>
+        <input type="Number" id="ipt_kWh">
+    <h4>Insira a bandeira tarifaria da energia: (vermelha, amarela ou verde)</h4>
+        <input type="text" id="ipt_bandeira">
+    <h4>Insira a quantidade de MB do plano de internet:</h4>
+        <input type="Number" id="ipt_internet">
+    <h4>Possui uma linha telefônica?</h4>
+        <input type="text" id="ipt_telefone">
+
+<button onclick="calcular()">Calcular Despesas Fixas</button>
+<div id="div_exibir"></div>
+
+</body>
+</html>
+<script>
+    function calcular(){
+        var energia = Number(ipt_kWh.value)
+        var bandeira = ipt_bandeira.value
+        var internet = Number(ipt_internet.value)
+        var telefone = ipt_telefone.value
+        var energiakWh;
+        var linhaTelefonica;
+
+// _____________________________________________Validando bandeira___________________________________________
+
+        if(bandeira == "vermelha"){
+
+        } else if(bandeira == "amarela"){
+
+        } else if(bandeira == "verde"){
+
+        } else {
+            alert("Insira uma bandeira válida...Vermelha, amarela ou verde")
+        }
+
+// ____________________________________Validando linha telefonica_________________________________________
+
+        if(telefone == "sim"){
+
+        } else if(telefone == "não"){
+
+        } else {
+            alert("Insira apenas 'sim' ou 'não'")
+        }
+// ________________________________________________________________________________________________
+
+// Energia por bandeira:                               
+                                    
+    if(bandeira == "verde"){
+    energiakWh = Number(energia * 0.75)
+        }
+                                        
+    if(bandeira == "amarela"){
+    energiakWh = Number(energia * 0.90)
+        }
+                                        
+    if(bandeira == "vermelha"){
+    energiakWh = Number(energia * 1)
+        }
+
+// Desconto de 10% se energia <= 50
+        if(energia <= 50){
+            energiakWh = energiakWh - (energiakWh * 0.10)
+        } else{
+
+        }
+
+// Para internet e telefone:
+        
+        var plano = Number(internet * 0.80)
+
+        if(telefone == "sim"){
+            linhaTelefonica = Number(plano + (plano * 0.35))
+        } else{
+            linhaTelefonica = Number(plano - (plano * 0.075))
+        }
+
+        div_exibir.innerHTML = `<br>Com o consumo de ${energia}kWh na bandeira ${bandeira}, a conta de energia totaliza R$${energiakWh}. 
+                                <br>Com o consumo de ${internet}MB de internet, o valor do plano de internet/telefone totaliza R$${linhaTelefonica}. 
+                                <br>Gasto total de despesas mensal: R$${energiakWh + linhaTelefonica}.`
+
+        }
+    
+</script>

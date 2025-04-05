@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Interativa</title>
+</head>
+<body>
+    <p>Insira a quantidade de músicas que deseja ouvir:</p>
+    <input type="Number" id="ipt_quantidade">
+    <button onclick="verificar()">Começar Show</button>
+    <div id="output"></div>
+
+</body>
+</html>
+<script>
+    function verificar(){
+        var quantidade = Number(ipt_quantidade.value)
+        var ultimaMusica;
+        var aprovadas = 0;
+        var reprovadas = 0;
+
+        for(i = 0; i < quantidade; i++){
+            var nomeMusica = prompt("Insira o nome da música")
+                while(nomeMusica == ultimaMusica){
+                    nomeMusica = prompt("Essa música acabou de tocar, escolha outra:")
+                }
+            ultimaMusica = nomeMusica;
+    
+            var gosta = prompt("Você gosta dessa música? (S/N)").toLowerCase();
+                if(gosta == 'sim'){
+                    aprovadas++
+                } else if(gosta == 'não'){
+                    reprovadas++
+                }
+            alert(`Tocando ${i + 1}ª música: [${nomeMusica}]`)
+        }
+        
+    output.innerHTML = fraseFinal;
+    output.innerHTML += `Foram tocadas ${quantidade} músicas!<br>
+                         Foram aprovadas ${aprovadas} músicas!<br>
+                         Foram reprovadas ${reprovadas} músicas!`
+    }
+</script>
